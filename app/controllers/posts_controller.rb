@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   # GET /posts.json
   def index
     @posts = Post.all
-    session[:oauth] = Koala::Facebook::OAuth.new('379518442129211','adef32a3dca86f207a151dc9226f3f80',callback_url)
+    session[:oauth] = Koala::Facebook::OAuth.new(APP_ID,APP_SECRET,callback_url)
     @auth_url = session[:oauth].url_for_oauth_code(:permissions=>["read_stream","publish_stream"]) 
   end
   def callback
